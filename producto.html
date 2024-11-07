@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos - La Sexta</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        body {
+            background-color: #000;
+            /* Fondo negro para toda la página */
+            color: #ff0;
+            /* Texto amarillo por defecto */
+        }
+
+        .navbar,
+        .footer {
+            background-color: rgba(0, 0, 0, 0.8);
+            /* Fondo negro transparente para la navbar y footer */
+            color: #ff0;
+            /* Texto amarillo */
+        }
+
+        .nav-link,
+        .navbar-brand,
+        .navbar-text {
+            color: #ff0 !important;
+            /* Texto amarillo en la navbar */
+            font-weight: bold;
+            /* Texto en negrita */
+        }
+
+        .nav-link:hover,
+        .navbar-brand:hover,
+        .navbar-text:hover {
+            color: #fff !important;
+            /* Texto blanco al pasar el mouse */
+        }
+
+        .filter-btn,
+        .add-to-cart,
+        .btn-primary {
+            background-color: #000;
+            /* Fondo negro para los botones */
+            color: #ff0;
+            /* Texto amarillo */
+            border: 1px solid #ff0;
+            /* Borde amarillo */
+            font-size: 0.9rem;
+            /* Ajustar el tamaño del texto de los botones */
+            padding: 0.375rem 0.75rem;
+            /* Ajustar el relleno de los botones */
+            width: 100%;
+            /* Asegurar que los botones ocupen todo el ancho porseaca */
+            font-weight: bold;
+            /* Texto en negrita */
+        }
+
+        .filter-btn:hover,
+        .add-to-cart:hover,
+        .btn-primary:hover {
+            background-color: #ff0;
+            /* Fondo amarillo al pasar el mouse */
+            color: #000;
+            /* Texto negro */
+        }
+
+        .card {
+            background-color: rgba(0, 0, 0, 0.8);
+            /* Fondo negro transparente para las tarjetas de producto */
+            border: none;
+            color: #ff0;
+            /* Texto amarillo */
+            margin-bottom: 30px;
+            /* Espaciado inferior entre tarjetas */
+        }
+
+        .card-body {
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .card-img-top {
+            width: 100%;
+            height: auto;
+        }
+
+        .titulo-principal {
+            color: #ff0;
+            /* Texto amarillo */
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: bold;
+            /* Texto en negrita */
+        }
+
+        .product {
+            margin-bottom: 30px;
+        }
+
+        .list-group-item {
+            background-color: transparent;
+            border: none;
+            padding: 0;
+            margin-bottom: 10px;
+            /* Espaciado entre los botones de filtro */
+        }
+
+        /* Ajustar espaciado entre contenedores */
+        .container>.row {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            /* Ajustar el espaciado entre los contenedores de filtros y productos */
+        }
+
+        /* Espaciado entre los productos */
+        #lista-productos .col-md-4 {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+        /* Clase para animación de clic */
+        @keyframes clickAnimation {
+            0% {
+                transform: scale(1);
+                background-color: #ff0;
+                color: #000;
+            }
+
+            50% {
+                transform: scale(0.9);
+                background-color: #000;
+                color: #ff0;
+            }
+
+            100% {
+                transform: scale(1);
+                background-color: #ff0;
+                color: #000;
+            }
+        }
+
+        .click-animation {
+            animation: clickAnimation 0.3s ease-out;
+        }
+
+        /* Nueva clase para el nombre del usuario sin grosor de fuente */
+        .user-name {
+            font-weight: normal;
+            /* Asegura que la fuente no tenga grosor */
+            color: #fff;
+            /* Asegura que el texto sea blanco */
+        }
+
+        /* Estilo para el botón de Cerrar Sesión */
+        .logout-btn {
+            color: #ff0;
+            /* Texto amarillo */
+            background-color: #000;
+            /* Fondo negro */
+            border: 2px solid #ff0;
+            /* Borde amarillo */
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+            /* Transición para efectos */
+        }
+
+        .logout-btn:hover {
+            background-color: #ff0;
+            /* Fondo amarillo al pasar el mouse */
+            color: #000;
+            /* Texto negro al pasar el mouse */
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <a class="navbar-brand" href="#">
+                <img src="Principal/icono.png" alt="Logo de la Tienda" id="logo-img" height="50">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item"><a class="nav-link" href="inicio.html">INICIO</a></li>
+                    <li class="nav-item"><a class="nav-link" href="producto.html">PRODUCTOS</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contacto.html">CONTACTO</a></li>
+                    <li class="nav-item"><a class="nav-link" href="iniciar sesion.html">INICIAR SESIÓN</a></li>
+                    <li class="nav-item"><a class="nav-link" href="registro.html">REGISTRO</a></li>
+                </ul>
+
+                <div class="navbar-text ml-3 hidden" id="logout-container">
+                    <a href="#" id="logout-link" class="btn logout-btn" style="color: #ff0;">Cerrar Sesión</a>
+                </div>
+
+                <div class="navbar-text" id="user-info">
+                    <img src="Principal/usuario.png" alt="Usuario" id="user-icon" height="45">
+                    <span id="user-name" style="color: #fff;"></span>
+                </div>
+
+                <div class="navbar-text ml-3">
+                    <a href="carrito.html">
+                        <img src="Principal/carrito.png" alt="Carrito de Compras" id="cart-icon" height="30"> (<span
+                            id="cart-count">0</span>)
+                    </a>
+                </div>
+
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mt-5">
+        <section id="productos">
+            <h1 class="titulo-principal">ROPA DEPORTIVA</h1>
+            <div class="row">
+                <div class="col-md-3">
+                    <b>
+                        <center>
+                            <h6 style="color: #ff0; font-weight: bold;">FILTROS</h6>
+                        </center>
+                    </b>
+
+                    <ul class="list-group">
+                        <li class="list-group-item"><button class="filter-btn btn" data-category="todos">TODO</button></li>
+                        <li class="list-group-item"><button class="filter-btn btn" data-category="camihombre">CAMISETAS HOMBRES</button></li>
+                        <li class="list-group-item"><button class="filter-btn btn" data-category="zapatillas">ZAPATILLAS</button></li>
+                        <li class="list-group-item"><button class="filter-btn btn" data-category="esp">ESPINILLERAS</button></li>
+                        
+                        <li class="list-group-item"><button class="filter-btn btn" data-category="camimujer">CAMISETAS MUJERES</button></li>
+                        <li class="list-group-item"><button class="filter-btn btn" data-category="buni">BUZOS NIÑOS</button></li>
+                    </ul>
+
+                </div>
+
+                <div class="col-md-9">
+                    <div class="row" id="lista-productos">
+                        <div class="col-md-4 product" data-category="camihombre">
+                            <div class="card mb-4">
+                                <img class="card-img-top" src="Subprincipal/Camisetas/argentina.png"
+                                    alt="Descripción de la imagen">
+                                <div class="card-body">
+                                    <b>
+                                        <h7 class="card-text">CAMISETA ARGENTINA </h7>
+                                    </b>
+                                    <button class="add-to-cart btn" data-id="1" data-name="CAMISETA ARGENTINA"
+                                        data-price="130.00"> COMPRAR (S/130.00) </button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4 product" data-category="camihombre">
+                            <div class="card mb-4">
+                                <img class="card-img-top" src="Subprincipal/Camisetas/barcelona.png"
+                                    alt="Descripción de la imagen">
+                                <div class="card-body">
+                                    <b>
+                                        <h7 class="card-text">CAMISETA BARCELONA</h7>
+                                    </b>
+                                    <button class="add-to-cart btn" data-id="2" data-name="CAMISETA BARCELONA"
+                                        data-price="100.00">COMPRAR (S/100.00)</button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4 product" data-category="camihombre">
+                            <div class="card mb-4">
+                                <img class="card-img-top" src="Subprincipal/Camisetas/brazil.png"
+                                    alt="Descripción de la imagen">
+                                <div class="card-body">
+                                    <b>
+                                        <h7 class="card-text">CAMISETA BRAZIL</h7>
+                                    </b>
+                                    <button class="add-to-cart btn" data-id="3" data-name="CAMISETA BRAZIL"
+                                        data-price="150.00">COMPRAR (S/150.00)</button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4 product" data-category="camihombre">
+                            <div class="card mb-4">
+                                <img class="card-img-top" src="Subprincipal/Camisetas/colombia.png"
+                                    alt="Descripción de la imagen">
+                                <div class="card-body">
+                                    <b>
+                                        <h7 class="card-text">CAMISETA COLOMBIA</h7>
+                                    </b>
+                                    <button class="add-to-cart btn" data-id="4" data-name="CAMISETA COLOMBIA"
+                                        data-price="135.00">COMPRAR (S/135.00)</button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4 product" data-category="camihombre">
+                            <div class="card mb-4">
+                                <img class="card-img-top" src="Subprincipal/Camisetas/españa.png"
+                                    alt="Descripción de la imagen">
+                                <div class="card-body">
+                                    <b>
+                                        <h7 class="card-text">CAMISETA ESPAÑA</h7>
+                                    </b>
+                                    <button class="add-to-cart btn" data-id="5" data-name="CAMISETA ESPAÑA"
+                                        data-price="110.00">COMPRAR (S/110.00)</button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4 product" data-category="camihombre">
+                            <div class="card mb-4">
+                                <img class="card-img-top" src="Subprincipal/Camisetas/inglaterra.png"
+                                    alt="Descripción de la imagen">
+                                <div class="card-body">
+                                    <b>
+                                        <h7 class="card-text">CAMISETA INGLATERRA</h7>
+                                    </b>
+                                    <button class="add-to-cart btn" data-id="6" data-name="CAMISETA INGLATERRA"
+                                        data-price="125.00">COMPRAR (S/125.00)</button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4 product" data-category="camihombre">
+                            <div class="card mb-4">
+                                <img class="card-img-top" src="Subprincipal/Camisetas/portugal.png"
+                                    alt="Descripción de la imagen">
+                                <div class="card-body">
+                                    <b>
+                                        <h7 class="card-text">CAMISETA PORTUGAL</h7>
+                                    </b>
+                                    <button class="add-to-cart btn" data-id="7" data-name="CAMISETA PORTUGAL"
+                                        data-price="150.00">COMPRAR (S/150.00)</button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4 product" data-category="camihombre">
+                            <div class="card mb-4">
+                                <img class="card-img-top" src="Subprincipal/Camisetas/suiza.png"
+                                    alt="Descripción de la imagen">
+                                <div class="card-body">
+                                    <b>
+                                        <h7 class="card-text">CAMISETA SUIZA</h7>
+                                    </b>
+                                    <button class="add-to-cart btn" data-id="8" data-name="CAMISETA SUIZA"
+                                        data-price="250.00">COMPRAR (S/250.00)</button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4 product" data-category="camihombre">
+                            <div class="card mb-4">
+                                <img class="card-img-top" src="Subprincipal/Camisetas/alemania.png"
+                                    alt="Descripción de la imagen">
+                                <div class="card-body">
+                                    <b>
+                                        <h7 class="card-text">CAMISETA ALEMANIA</h7>
+                                    </b>
+                                    <button class="add-to-cart btn" data-id="9" data-name="CAMISETA ALEMANIA"
+                                        data-price="190.00">COMPRAR (S/190.00)</button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4 product" data-category="zapatillas">
+                            <div class="card mb-4">
+                                <img class="card-img-top" src="Subprincipal/Zapatillas/zapa2.jpg"
+                                    alt="Descripción de la imagen">
+                                <div class="card-body">
+                                    <b>
+                                        <h7 class="card-text">ZAPATILLA PUMA</h7>
+                                    </b>
+                                    <button class="add-to-cart btn" data-id="10" data-name="ZAPATILLA PUMA"
+                                        data-price="250.00">COMPRAR (S/250.00)</button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4 product" data-category="zapatillas">
+                            <div class="card mb-4">
+                                <img class="card-img-top" src="Subprincipal/Zapatillas/zapa3.jpg"
+                                    alt="Descripción de la imagen">
+                                <div class="card-body">
+                                    <b>
+                                        <h7 class="card-text">ZAPATILLA NIKE TF15 </h7>
+                                    </b>
+                                    <button class="add-to-cart btn" data-id="11" data-name="ZAPATILLA NIKE TF15"
+                                        data-price="300.00">COMPRAR (S/300.00)</button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4 product" data-category="zapatillas">
+                            <div class="card mb-4">
+                                <img class="card-img-top" src="Subprincipal/Zapatillas/zapa4.jpg"
+                                    alt="Descripción de la imagen">
+                                <div class="card-body">
+                                    <b>
+                                        <h7 class="card-text">ZAPATILLA NIKE TF12 </h7>
+                                    </b>
+                                    <button class="add-to-cart btn" data-id="12" data-name="ZAPATILLA NIKE TF12"
+                                        data-price="170.00">COMPRAR (S/170.00)</button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4 product" data-category="zapatillas">
+                            <div class="card mb-4">
+                                <img class="card-img-top" src="Subprincipal/Zapatillas/zapa5.jpg"
+                                    alt="Descripción de la imagen">
+                                <div class="card-body">
+                                    <b>
+                                        <h7 class="card-text">ZAPATILLA NIKE VR</h7>
+                                    </b>
+                                    <button class="add-to-cart btn" data-id="13" data-name="ZAPATILLA NIKE VR"
+                                        data-price="240.00">COMPRAR (S/240.00)</button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4 product" data-category="zapatillas">
+                            <div class="card mb-4">
+                                <img class="card-img-top" src="Subprincipal/Zapatillas/zapa6.jpg"
+                                    alt="Descripción de la imagen">
+                                <div class="card-body">
+                                    <b>
+                                        <h7 class="card-text">ZAPATILLA ONREALON </h7>
+                                    </b>
+                                    <button class="add-to-cart btn" data-id="14" data-name="ZAPATILLA ONREALON"
+                                        data-price="350.00">COMPRAR (S/350.00)</button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4 product" data-category="zapatillas">
+                            <div class="card mb-4">
+                                <img class="card-img-top" src="Subprincipal/Zapatillas/zapa7.png"
+                                    alt="Descripción de la imagen">
+                                <div class="card-body">
+                                    <b>
+                                        <h7 class="card-text">ZAPATILLA ADIDAS X</h7>
+                                    </b>
+                                    <button class="add-to-cart btn" data-id="15" data-name="ZAPATILLA ADIDAS X"
+                                        data-price="270.00">COMPRAR (S/270.00)</button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4 product" data-category="zapatillas">
+                            <div class="card mb-4">
+                                <img class="card-img-top" src="Subprincipal/Zapatillas/zapa8.png"
+                                    alt="Descripción de la imagen">
+                                <div class="card-body">
+                                    <b>
+                                        <h7 class="card-text">ZAPATILLA ADIDAS XR </h7>
+                                    </b>
+                                    <button class="add-to-cart btn" data-id="16" data-name="ZAPATILLA ADIDAS XR"
+                                        data-price="320.00">COMPRAR (S/320.00)</button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4 product" data-category="zapatillas">
+                            <div class="card mb-4">
+                                <img class="card-img-top" src="Subprincipal/Zapatillas/zapa1.jpg"
+                                    alt="Descripción de la imagen">
+                                <div class="card-body">
+                                    <b>
+                                        <h7 class="card-text">ZAPATILLA NIKE MT14 </h7>
+                                    </b>
+                                    <button class="add-to-cart btn" data-id="17" data-name="ZAPATILLA NIKE MT14"
+                                        data-price="256.00">COMPRAR (S/256.00)</button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4 product" data-category="zapatillas">
+                            <div class="card mb-4">
+                                <img class="card-img-top" src="Subprincipal/Zapatillas/zapa9.png"
+                                    alt="Descripción de la imagen">
+                                <div class="card-body">
+                                    <b>
+                                        <h7 class="card-text">ZAPATILLA JOMA</h7>
+                                    </b>
+                                    <button class="add-to-cart btn" data-id="18" data-name="ZAPATILLA JOMA"
+                                        data-price="370.00">COMPRAR (S/370.00)</button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4 product" data-category="esp">
+                            <div class="card mb-4">
+                                <img class="card-img-top" src="Subprincipal/Espinilleras/espi1.jpg"
+                                    alt="Descripción de la imagen">
+                                <div class="card-body">
+                                    <b>
+                                        <h7 class="card-text">ESPINILLERA NIKE PLOMA </h7>
+                                    </b>
+                                    <button class="add-to-cart btn" data-id="19" data-name="ESPINILLERA NIKE PLOMA"
+                                        data-price="80.00">COMPRAR (S/80.00)</button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4 product" data-category="esp">
+                            <div class="card mb-4">
+                                <img class="card-img-top" src="Subprincipal/Espinilleras/espi2.jpg"
+                                    alt="Descripción de la imagen">
+                                <div class="card-body">
+                                    <b>
+                                        <h7 class="card-text">ESPINILLERA NIKE AZUL </h7>
+                                    </b>
+                                    <button class="add-to-cart btn" data-id="20" data-name="ESPINILLERA NIKE AZUL"
+                                        data-price="100.00">COMPRAR (S/100.00)</button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4 product" data-category="esp">
+                            <div class="card mb-4">
+                                <img class="card-img-top" src="Subprincipal/Espinilleras/espi3.jpg"
+                                    alt="Descripción de la imagen">
+                                <div class="card-body">
+                                    <b>
+                                        <h7 class="card-text">ESPINILLERA NIKE TFPRO</h7>
+                                    </b>
+                                    <button class="add-to-cart btn" data-id="21" data-name="ESPINILLERA NIKE TFPRO"
+                                        data-price="65.00">COMPRAR (S/65.00)</button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4 product" data-category="esp">
+                            <div class="card mb-4">
+                                <img class="card-img-top" src="Subprincipal/Espinilleras/espi4.jpg"
+                                    alt="Descripción de la imagen">
+                                <div class="card-body">
+                                    <b>
+                                        <h7 class="card-text">ESPINILLERA NIKE AMTF17</h7>
+                                    </b>
+                                    <button class="add-to-cart btn" data-id="22" data-name="ESPINILLERA NIKE AMTF17"
+                                        data-price="97.00">COMPRAR (S/97.00)</button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4 product" data-category="esp">
+                            <div class="card mb-4">
+                                <img class="card-img-top" src="Subprincipal/Espinilleras/espi5.jpg"
+                                    alt="Descripción de la imagen">
+                                <div class="card-body">
+                                    <b>
+                                        <h7 class="card-text"> ESPINILLERA NIKE VERDE</h7>
+                                    </b>
+                                    <button class="add-to-cart btn" data-id="23" data-name="ESPINILLERA NIKE VERDE"
+                                        data-price="120.00">COMPRAR (S/120.00)</button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4 product" data-category="esp">
+                            <div class="card mb-4">
+                                <img class="card-img-top" src="Subprincipal/Espinilleras/espi6.jpg"
+                                    alt="Descripción de la imagen">
+                                <div class="card-body">
+                                    <b>
+                                        <h7 class="card-text">ESPINILLERA NIKE MTF16</h7>
+                                    </b>
+                                    <button class="add-to-cart btn" data-id="24" data-name="ESPINILLERA NIKE MTF16"
+                                        data-price="110.00">COMPRAR (S/110.00)</button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4 product" data-category="esp">
+                            <div class="card mb-4">
+                                <img class="card-img-top" src="Subprincipal/Espinilleras/espi7.jpg"
+                                    alt="Descripción de la imagen">
+                                <div class="card-body">
+                                    <b>
+                                        <h7 class="card-text">ESPINILLERA NIKE ANTF2</h7>
+                                    </b>
+                                    <button class="add-to-cart btn" data-id="25" data-name="ESPINILLERA NIKE ANTF2"
+                                        data-price="69.00">COMPRAR (S/69.00)</button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4 product" data-category="esp">
+                            <div class="card mb-4">
+                                <img class="card-img-top" src="Subprincipal/Espinilleras/espi8.jpg"
+                                    alt="Descripción de la imagen">
+                                <div class="card-body">
+                                    <b>
+                                        <h7 class="card-text">ESPINILLERA NIKE AZU12</h7>
+                                    </b>
+                                    <button class="add-to-cart btn" data-id="26" data-name="ESPINILLERA NIKE AZU12"
+                                        data-price="89.00">COMPRAR (S/89.00)</button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4 product" data-category="esp">
+                            <div class="card mb-4">
+                                <img class="card-img-top" src="Subprincipal/Espinilleras/espi9.jpg"
+                                    alt="Descripción de la imagen">
+                                <div class="card-body">
+                                    <b>
+                                        <h7 class="card-text">ESPINILLERA NIKE DTF12</h7>
+                                    </b>
+                                    <button class="add-to-cart btn" data-id="27" data-name="ESPINILLERA NIKE DTF12"
+                                        data-price="135.00">COMPRAR (S/135.00)</button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4 product" data-category="camimujer">
+                            <div class="card mb-4">
+                                <img class="card-img-top" src="Subprincipal/Camisemu/muje1.jpg"
+                                    alt="Descripción de la imagen">
+                                <div class="card-body">
+                                    <b>
+                                        <h7 class="card-text">CAMISETA ARSENAL</h7>
+                                    </b>
+                                    <button class="add-to-cart btn" data-id="28" data-name="CAMISETA ARSENAL"
+                                        data-price="120.00">COMPRAR (S/120.00)</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="col-md-4 product" data-category="camimujer">
+                            <div class="card mb-4">
+                                <img class="card-img-top" src="Subprincipal/Camisemu/muje2.png"
+                                    alt="Descripción de la imagen">
+                                <div class="card-body">
+                                    <b>
+                                        <h7 class="card-text">CAMISETA REAL MADRID</h7>
+                                    </b>
+                                    <button class="add-to-cart btn" data-id="29" data-name="CAMISETA REAL MADRID"
+                                        data-price="150.00">COMPRAR (S/150.00)</button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        
+                        <div class="col-md-4 product" data-category="camimujer">
+                            <div class="card mb-4">
+                                <img class="card-img-top" src="Subprincipal/Camisemu/muje8.png" alt="Descripción de la imagen">
+                                <div class="card-body">
+                                    <b>
+                                        <h7 class="card-text">CAMISETA ARSENAL ROSA</h7>
+                                    </b>
+                                    <button class="add-to-cart btn" data-id="30" data-name="CAMISETA ARSENAL ROSA" data-price="310.00">
+                                        COMPRAR (S/310.00)
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4 product" data-category="camimujer">
+                            <div class="card mb-4">
+                                <img class="card-img-top" src="Subprincipal/Camisemu/muje4.png" alt="Descripción de la imagen">
+                                <div class="card-body">
+                                    <b>
+                                        <h7 class="card-text">CAMISETA ARGENTINA TF</h7>
+                                    </b>
+                                    <button class="add-to-cart btn" data-id="31" data-name="CAMISETA ARGENTINA TF" data-price="140.00">
+                                        COMPRAR (S/140.00)
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+
+
+                        <div class="col-md-4 product" data-category="camimujer">
+                            <div class="card mb-4">
+                                <img class="card-img-top" src="Subprincipal/Camisemu/muje5.png" alt="Descripción de la imagen">
+                                <div class="card-body">
+                                    <b>
+                                        <h7 class="card-text">CAMISETA ESPAÑA</h7>
+                                    </b>
+                                    <button class="add-to-cart btn" data-id="32" data-name="CAMISETA ESPAÑA" data-price="210.00">
+                                        COMPRAR (S/210.00)
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+
+
+                        <div class="col-md-4 product" data-category="camimujer">
+                            <div class="card mb-4">
+                                <img class="card-img-top" src="Subprincipal/Camisemu/muje6.png" alt="Descripción de la imagen">
+                                <div class="card-body">
+                                    <b>
+                                        <h7 class="card-text">CAMISETA ITALIA</h7>
+                                    </b>
+                                    <button class="add-to-cart btn" data-id="33" data-name="CAMISETA ITALIA" data-price="250.00">
+                                        COMPRAR (S/250.00)
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+
+
+                        <div class="col-md-4 product" data-category="camimujer">
+                            <div class="card mb-4">
+                                <img class="card-img-top" src="Subprincipal/Camisemu/muje7.png" alt="Descripción de la imagen">
+                                <div class="card-body">
+                                    <b>
+                                        <h7 class="card-text">CAMISETA ALEMANIA</h7>
+                                    </b>
+                                    <button class="add-to-cart btn" data-id="34" data-name="CAMISETA ALEMANIA" data-price="180.00">
+                                        COMPRAR (S/180.00)
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+
+                        <div class="col-md-4 product" data-category="camimujer">
+                            <div class="card mb-4">
+                                <img class="card-img-top" src="Subprincipal/Camisemu/muje3.png" alt="Descripción de la imagen">
+                                <div class="card-body">
+                                    <b>
+                                        <h7 class="card-text">CAMISETA PERU</h7>
+                                    </b>
+                                    <button class="add-to-cart btn" data-id="35" data-name="CAMISETA PERU" data-price="180.00">
+                                        COMPRAR (S/180.00)
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+
+                        <div class="col-md-4 product" data-category="camimujer">
+                            <div class="card mb-4">
+                                <img class="card-img-top" src="Subprincipal/Camisemu/muje9.png" alt="Descripción de la imagen">
+                                <div class="card-body">
+                                    <b>
+                                        <h7 class="card-text">CAMISETA INTER MIAMI</h7>
+                                    </b>
+                                    <button class="add-to-cart btn" data-id="36" data-name="CAMISETA INTER MIAMI" data-price="170.00">
+                                        COMPRAR (S/170.00)
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    
+
+                        <div class="col-md-4 product" data-category="buni">
+                            <div class="card mb-4">
+                                <img class="card-img-top" src="Subprincipal/Buzo niño/buzi1.png"
+                                    alt="Descripción de la imagen">
+                                <div class="card-body">
+                                    <b>
+                                        <h7 class="card-text">BUZO ADIDAS NEGRO</h7>
+                                    </b>
+                                    <button class="add-to-cart btn" data-id="37" data-name="BUZO ADIDAS NEGRO"
+                                        data-price="300.00">COMPRAR (S/300.00)</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="col-md-4 product" data-category="buni">
+                            <div class="card mb-4">
+                                <img class="card-img-top" src="Subprincipal/Buzo niño/buzi2.png"
+                                    alt="Descripción de la imagen">
+                                <div class="card-body">
+                                    <b>
+                                        <h7 class="card-text">BUZO NIKE DISEÑO</h7>
+                                    </b>
+                                    <button class="add-to-cart btn" data-id="38" data-name="BUZO NIKE DISEÑO"
+                                        data-price="370.00">COMPRAR (S/370.00)</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div class="col-md-4 product" data-category="buni">
+                            <div class="card mb-4">
+                                <img class="card-img-top" src="Subprincipal/Buzo niño/buzi3.png" alt="Descripción de la imagen">
+                                <div class="card-body">
+                                    <b>
+                                        <h7 class="card-text">BUZO NIKE MORADO</h7>
+                                    </b>
+                                    <button class="add-to-cart btn" data-id="39" data-name="BUZO NIKE MORADO" data-price="400.00">
+                                        COMPRAR (S/400.00)
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4 product" data-category="buni">
+                            <div class="card mb-4">
+                                <img class="card-img-top" src="Subprincipal/Buzo niño/buzi4.png" alt="Descripción de la imagen">
+                                <div class="card-body">
+                                    <b>
+                                        <h7 class="card-text">BUZO NIKE CR7</h7>
+                                    </b>
+                                    <button class="add-to-cart btn" data-id="40" data-name="BUZO NIKE CR7" data-price="540.00">
+                                        COMPRAR (S/540.00)
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+
+                        <div class="col-md-4 product" data-category="buni">
+                            <div class="card mb-4">
+                                <img class="card-img-top" src="Subprincipal/Buzo niño/buzi5.png" alt="Descripción de la imagen">
+                                <div class="card-body">
+                                    <b>
+                                        <h7 class="card-text">BUZO ADIDAS ROJO</h7>
+                                    </b>
+                                    <button class="add-to-cart btn" data-id="41" data-name="BUZO ADIDAS ROJO" data-price="310.00">
+                                        COMPRAR (S/310.00)
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+
+                        <div class="col-md-4 product" data-category="buni">
+                            <div class="card mb-4">
+                                <img class="card-img-top" src="Subprincipal/Buzo niño/buzi6.png" alt="Descripción de la imagen">
+                                <div class="card-body">
+                                    <b>
+                                        <h7 class="card-text">BUZO ADIDAS ROSADO</h7>
+                                    </b>
+                                    <button class="add-to-cart btn" data-id="42" data-name="BUZO ADIDAS ROSADO" data-price="450.00">
+                                        COMPRAR (S/450.00)
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+
+                        <div class="col-md-4 product" data-category="buni">
+                            <div class="card mb-4">
+                                <img class="card-img-top" src="Subprincipal/Buzo niño/buzi7.png" alt="Descripción de la imagen">
+                                <div class="card-body">
+                                    <b>
+                                        <h7 class="card-text">BUZO NIKE ESTRELLAS</h7>
+                                    </b>
+                                    <button class="add-to-cart btn" data-id="43" data-name="BUZO NIKE ESTRELLAS" data-price="580.00">
+                                        COMPRAR (S/580.00)
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+
+                        <div class="col-md-4 product" data-category="buni">
+                            <div class="card mb-4">
+                                <img class="card-img-top" src="Subprincipal/Buzo niño/buzi8.png" alt="Descripción de la imagen">
+                                <div class="card-body">
+                                    <b>
+                                        <h7 class="card-text">BUZO NIKE MEDIANOCHE</h7>
+                                    </b>
+                                    <button class="add-to-cart btn" data-id="44" data-name="BUZO NIKE MORADO NOCHE" data-price="230.00">
+                                        COMPRAR (S/230.00)
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="col-md-4 product" data-category="buni">
+                            <div class="card mb-4">
+                                <img class="card-img-top" src="Subprincipal/Buzo niño/buzi9.png" alt="Descripción de la imagen">
+                                <div class="card-body">
+                                    <b>
+                                        <h7 class="card-text">BUZO ADIDAS MESSI</h7>
+                                    </b>
+                                    <button class="add-to-cart btn" data-id="45" data-name="BUZO ADIDAS MESSI" data-price="280.00">
+                                        COMPRAR (S/280.00)
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer class="mt-5 py-3 text-center">
+        <b> <p>&copy; 2024 La Sexta - Todos los derechos reservados</p></b>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        
+         document.addEventListener('DOMContentLoaded', function () {
+            const user = JSON.parse(localStorage.getItem('loggedInUser'));
+            if (user) {
+                document.getElementById('user-name').innerText = user.name;
+                document.getElementById('logout-container').classList.remove('hidden');
+            } else {
+                document.getElementById('logout-container').classList.add('hidden');
+            }
+
+            const cartCount = document.getElementById('cart-count');
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            function updateCartCount() {
+                const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+                cartCount.textContent = totalItems;
+            }
+
+            updateCartCount();
+
+            document.getElementById('logout-link').addEventListener('click', function (event) {
+                event.preventDefault();
+                localStorage.removeItem('loggedInUser');
+                localStorage.removeItem('cart');
+                window.location.href = 'iniciar sesion.html';
+            });
+        });
+
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const cartCount = document.getElementById('cart-count');
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            function updateCartCount() {
+                cartCount.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+            }
+
+            document.querySelectorAll('.filter-btn').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const category = e.target.getAttribute('data-category');
+                    document.querySelectorAll('.product').forEach(product => {
+                        if (category === 'todos' || product.getAttribute('data-category') === category) {
+                            product.style.display = 'block';
+                        } else {
+                            product.style.display = 'none';
+                        }
+                    });
+                });
+            });
+
+
+            document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const id = parseInt(e.target.getAttribute('data-id'));
+                    const name = e.target.getAttribute('data-name');
+                    const price = parseFloat(e.target.getAttribute('data-price'));
+                    const existingProduct = cart.find(item => item.id === id);
+
+                    // Añadir la clase de animación
+                    e.target.classList.add('click-animation');
+
+                    if (existingProduct) {
+                        existingProduct.quantity += 1;
+                    } else {
+                        cart.push({ id, name, price, quantity: 1 });
+                    }
+
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                    updateCartCount();
+
+                    // Remover la clase de animación después de 0.3s
+                    setTimeout(() => {
+                        e.target.classList.remove('click-animation');
+                    }, 300);
+                });
+            });
+
+            updateCartCount();
+        });
+    </script>
+</body>
+
+</html>

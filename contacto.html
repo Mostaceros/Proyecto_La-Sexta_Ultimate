@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio - La Sexta</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        body {
+            background: linear-gradient(to bottom, #000, #ff0);
+            color: #fff;
+        }
+
+        .navbar, .footer {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #ff0;
+        }
+
+        .nav-link, .navbar-brand, .navbar-text {
+            color: #ff0 !important;
+        }
+
+        .nav-link:hover, .navbar-brand:hover, .navbar-text:hover {
+            color: #fff !important;
+        }
+
+        .titulo-principal {
+            color: #ff0;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        p {
+            text-align: justify;
+            margin: 0 auto;
+            max-width: 600px;
+        }
+
+        .footer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .about-section {
+            background: linear-gradient(to right, #000, #ff0);
+            padding: 50px 0;
+        }
+
+        .about-text {
+            color: #fff;
+            font-size: 1.2em;
+        }
+
+        .contact-info {
+            margin-top: 20px;
+        }
+
+        .contact-info p {
+            margin-bottom: 5px;
+        }
+
+        .contact-icon {
+            width: 30px;
+            margin-right: 10px;
+        }
+
+        .contact-icons img {
+            margin-right: 15px;
+            width: 30px;
+        }
+
+        .image-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        @media (min-width: 768px) {
+            .about-section .row {
+                align-items: center;
+            }
+        }
+
+        /* Estilo para el botón de Cerrar Sesión */
+        .logout-btn {
+            color: #ff0; /* Texto amarillo */
+            background-color: #000; /* Fondo negro */
+            border: 2px solid #ff0; /* Borde amarillo */
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s; /* Transición para efectos */
+        }
+
+        .logout-btn:hover {
+            background-color: #ff0; /* Fondo amarillo al pasar el mouse */
+            color: #000; /* Texto negro al pasar el mouse */
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <a class="navbar-brand" href="#">
+                <img src="Principal/icono.png" alt="Logo de la Tienda" id="logo-img" height="50">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item"><a class="nav-link" href="inicio.html">INICIO</a></li>
+                    <li class="nav-item"><a class="nav-link" href="producto.html">PRODUCTOS</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contacto.html">CONTACTO</a></li>
+                    <li class="nav-item"><a class="nav-link" href="iniciar sesion.html">INICIAR SESIÓN</a></li>
+                    <li class="nav-item"><a class="nav-link" href="registro.html">REGISTRO</a></li>
+                </ul>
+
+                <div class="navbar-text ml-3 hidden" id="logout-container">
+                    <a href="#" id="logout-link" class="btn logout-btn" style="color: #ff0;">Cerrar Sesión</a>
+                </div>
+
+                <div class="navbar-text" id="user-info">
+                    <img src="Principal/usuario.png" alt="Usuario" id="user-icon" height="45">
+                    <span id="user-name" style="color: #fff;"></span>
+                </div>
+
+                <div class="navbar-text ml-3">
+                    <a href="carrito.html">
+                        <img src="Principal/carrito.png" alt="Carrito de Compras" id="cart-icon" height="30"> (<span id="cart-count">0</span>)
+                    </a>
+                </div>
+
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mt-5">
+        <section class="about-section text-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 text-left">
+                        <h3 class="titulo-principal">Sobre nosotros:</h3>
+                        <p class="about-text">
+                            La Sexta Sports es una tienda dedicada al rubro de ropa deportiva, una empresa que ofrece a sus clientes la mejor calidad de ropa deportiva de las mejores marcas y los mejores precios.
+                        </p>
+                    </div>
+                    <div class="col-md-6 text-center image-container">
+                        <img src="Principal/contacto.png" class="img-fluid rounded" alt="Imagen de tienda">
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col-md-4 text-left">
+                        <h3 class="titulo-principal">CONTACTO:</h3>
+                        <div class="contact-info">
+                            <p><img src="Principal/gmail.png" class="contact-icon" alt="Email"> lasextasports@gmail.com</p>
+                            <p><img src="Principal/insta.png" class="contact-icon" alt="Instagram"> @LaSextDeport</p>
+                            <p><img src="Principal/waht.png" class="contact-icon" alt="WhatsApp"> +51 987677293</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="mt-5 py-3 footer">
+        <b> <p>&copy; 2024 La Sexta - Todos los derechos reservados</p></b>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const user = JSON.parse(localStorage.getItem('loggedInUser'));
+            if (user) {
+                document.getElementById('user-name').innerText = user.name;
+                document.getElementById('logout-container').classList.remove('hidden');
+            } else {
+                document.getElementById('logout-container').classList.add('hidden');
+            }
+
+            const cartCount = document.getElementById('cart-count');
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            function updateCartCount() {
+                const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+                cartCount.textContent = totalItems;
+            }
+
+            updateCartCount();
+
+            document.getElementById('logout-link').addEventListener('click', function (event) {
+                event.preventDefault();
+                localStorage.removeItem('loggedInUser');
+                localStorage.removeItem('cart');
+                window.location.href = 'iniciar sesion.html';
+            });
+        });
+    </script>
+</body>
+
+</html>

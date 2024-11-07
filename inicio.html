@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio - La Sexta</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-color: #000;
+            color: #ff0;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar, .footer {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #ff0;
+        }
+        .nav-link, .navbar-brand, .navbar-text {
+            color: #ff0 !important;
+        }
+        .nav-link:hover, .navbar-brand:hover, .navbar-text:hover {
+            color: #fff !important;
+        }
+        .titulo-principal {
+            color: #ff0;
+            text-align: center;
+            margin: 30px 0;
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+        p {
+            text-align: center;
+            margin: 0 auto 20px auto;
+            max-width: 600px;
+        }
+        .footer {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #ffff00;
+            text-align: center;
+            padding: 20px 0;
+            border-top: 3px solid #ffcc00;
+            margin-top: 40px;
+        }
+        .image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .image-container img {
+            width: 80%;
+            height: auto;
+            border-radius: 20px;
+        }
+        main {
+            padding-top: 70px;
+            margin-bottom: 60px;
+        }
+        section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .navbar-text {
+            display: flex;
+            align-items: center;
+        }
+        #user-info {
+            display: flex;
+            align-items: center;
+        }
+        #user-icon, #cart-icon {
+            margin-right: 10px;
+        }
+        .logout-btn {
+            color: #ff0;
+            background-color: #000;
+            border: 2px solid #ff0;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .logout-btn:hover {
+            background-color: #ff0;
+            color: #000;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <a class="navbar-brand" href="#">
+                <img src="Principal/icono.png" alt="Logo de la Tienda" id="logo-img" height="50">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item"><a class="nav-link" href="inicio.html">INICIO</a></li>
+                    <li class="nav-item"><a class="nav-link" href="producto.html">PRODUCTOS</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contacto.html">CONTACTO</a></li>
+                    <li class="nav-item"><a class="nav-link" href="iniciar sesion.html">INICIAR SESIÓN</a></li>
+                    <li class="nav-item"><a class="nav-link" href="registro.html">REGISTRO</a></li>
+                </ul>
+                <div class="navbar-text ml-3 hidden" id="logout-container">
+                    <a href="#" id="logout-link" class="btn logout-btn" style="color: #ff0;">Cerrar Sesión</a>
+                </div>
+                <div class="navbar-text" id="user-info">
+                    <img src="Principal/usuario.png" alt="Usuario" id="user-icon" height="45">
+                    <span id="user-name" style="color: #fff;"></span>
+                </div>
+                <div class="navbar-text ml-3">
+                    <a href="carrito.html">
+                        <img src="Principal/carrito.png" alt="Carrito de Compras" id="cart-icon" height="30"> (<span id="cart-count">0</span>)
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main class="container mt-5">
+        <section id="Inicial" class="mx-auto">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-md-6 text-center mb-4 mb-md-0">
+                    <h2 class="titulo-principal"><b>PRODUCTOS AL MEJOR COSTO</b></h2>
+                    <b><p>"Bienvenido a La Sexta Sports: donde la calidad y el rendimiento se encuentran. Descubre los mejores productos deportivos de las marcas líderes, a precios que no puedes dejar pasar. ¡Eleva tu juego con nosotros!"</p></b>
+                </div>
+                <div class="col-md-6 text-center">
+                    <div class="image-container">
+                        <img src="Principal/tienda.png" class="img-fluid rounded" alt="Imagen de tienda">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <div class="container">
+            <b><p>&copy; 2024 La Sexta - Todos los derechos reservados</p></b>
+        </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const user = JSON.parse(localStorage.getItem('loggedInUser'));
+            if (user) {
+                document.getElementById('user-name').innerText = user.name;
+                document.getElementById('logout-container').classList.remove('hidden');
+            } else {
+                document.getElementById('logout-container').classList.add('hidden');
+            }
+
+            const cartCount = document.getElementById('cart-count');
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            function updateCartCount() {
+                const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+                cartCount.textContent = totalItems;
+            }
+
+            updateCartCount();
+
+            document.getElementById('logout-link').addEventListener('click', function (event) {
+                event.preventDefault();
+                localStorage.removeItem('loggedInUser');
+                localStorage.removeItem('cart');
+                window.location.href = 'iniciar sesion.html';
+            });
+        });
+    </script>
+</body>
+</html>
