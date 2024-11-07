@@ -1,12 +1,12 @@
-# Proyecto_La-Sexta_Ultimate
-Escuchame algo ,haz estos pasos porfa:
 # Manual de Uso para la Aplicación
 
 Este documento te guiará a través del proceso de descarga y configuración de la aplicación.
 
 ## Requisitos Previos
 
-Asegúrate de tener instalado Git en tu máquina. Si no lo tienes, puedes descargarlo desde [aquí](https://git-scm.com/downloads).
+Asegúrate de tener instalado Git y Node.js en tu máquina. Si no los tienes, puedes descargarlos desde los siguientes enlaces:
+- [Git](https://git-scm.com/downloads)
+- [Node.js](https://nodejs.org/)
 
 ## Pasos para Clonar el Repositorio
 
@@ -33,6 +33,38 @@ Asegúrate de tener instalado Git en tu máquina. Si no lo tienes, puedes descar
    ```bash
    git checkout develop-cesar
    ```
+
+## Instalación de Dependencias
+
+Para instalar las dependencias del proyecto, asegúrate de estar en la carpeta del proyecto y ejecuta el siguiente comando:
+```bash
+npm install
+```
+Esto instalará las dependencias especificadas en el archivo `package.json`, que son:
+```json
+{
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.1",
+    "mongoose": "^8.8.0"
+  }
+}
+```
+
+## Ejecutar la Aplicación
+
+Una vez que las dependencias estén instaladas, puedes ejecutar la aplicación utilizando el siguiente comando:
+```bash
+npm start
+```
+
+Para Correr el codigo ,en la terminal Ctrl+shift +ñ ,pones :
+node server.js Con esto te dara el puerto .
+Algo asi :::
+Servidor corriendo en http://localhost:3000
+
+USAS EL LINK EN EL BUSCADOR Y LISTO.
+```
 
 ## Agregar Nuevos Datos
 
@@ -65,4 +97,4 @@ Si deseas agregar nuevos datos o realizar cambios en el proyecto, se recomienda 
 
 Si tienes alguna pregunta o necesitas más ayuda, no dudes en contactar con el equipo de desarrollo.
 
-¡Gracias por contribuir!
+¡Gracias por contribuir! 
