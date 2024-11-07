@@ -14,16 +14,21 @@
             color: #fff;
         }
 
-        .navbar, .footer {
+        .navbar,
+        .footer {
             background-color: rgba(0, 0, 0, 0.8);
             color: #ff0;
         }
 
-        .nav-link, .navbar-brand, .navbar-text {
+        .nav-link,
+        .navbar-brand,
+        .navbar-text {
             color: #ff0 !important;
         }
 
-        .nav-link:hover, .navbar-brand:hover, .navbar-text:hover {
+        .nav-link:hover,
+        .navbar-brand:hover,
+        .navbar-text:hover {
             color: #fff !important;
         }
 
@@ -31,12 +36,24 @@
             color: #ff0;
             text-align: center;
             margin-bottom: 30px;
+            font-size: 2rem;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+            transition: transform 0.3s;
+        }
+
+        .titulo-principal:hover {
+            transform: scale(1.05);
         }
 
         p {
             text-align: justify;
             margin: 0 auto;
             max-width: 600px;
+            transition: color 0.3s;
+        }
+
+        p:hover {
+            color: #ff6600;
         }
 
         .footer {
@@ -45,46 +62,57 @@
             align-items: center;
             padding: 20px;
             text-align: center;
+            margin-top: 30px;
         }
 
         .about-section {
             background: linear-gradient(to right, #000, #ff0);
             padding: 50px 0;
+            transition: background-color 0.3s;
+        }
+
+        .about-section:hover {
+            background: linear-gradient(to right, #ff0, #000);
         }
 
         .about-text {
             color: #fff;
             font-size: 1.2em;
+            animation: fadeIn 1s;
         }
 
-        .contact-info {
-            margin-top: 20px;
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
-        .contact-info p {
-            margin-bottom: 5px;
+        .contact-info a {
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-info a:hover {
+            color: #ff6600;
         }
 
         .contact-icon {
-            width: 30px;
+            width: 20px; /* Cambiado el tamaño a 20px */
             margin-right: 10px;
-        }
-
-        .contact-icons img {
-            margin-right: 15px;
-            width: 30px;
-        }
-
-        .image-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100%;
         }
 
         .image-container img {
             max-width: 100%;
-            height: auto;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        .image-container img:hover {
+            transform: scale(1.05);
         }
 
         @media (min-width: 768px) {
@@ -94,18 +122,18 @@
         }
 
         .logout-btn {
-            color: #ff0; /* Texto amarillo */
-            background-color: #000; /* Fondo negro */
-            border: 2px solid #ff0; /* Borde amarillo */
+            color: #ff0;
+            background-color: #000;
+            border: 2px solid #ff0;
             padding: 10px 20px;
             border-radius: 5px;
             text-decoration: none;
-            transition: background-color 0.3s, color 0.3s; /* Transición para efectos */
+            transition: background-color 0.3s, color 0.3s;
         }
 
         .logout-btn:hover {
-            background-color: #ff0; /* Fondo amarillo al pasar el mouse */
-            color: #000; /* Texto negro al pasar el mouse */
+            background-color: #ff0;
+            color: #000;
         }
 
         .hidden {
@@ -134,7 +162,7 @@
                 </ul>
 
                 <div class="navbar-text ml-3 hidden" id="logout-container">
-                    <a href="#" id="logout-link" class="btn logout-btn" style="color: #ff0;">Cerrar Sesión</a>
+                    <a href="#" id="logout-link" class="btn logout-btn">Cerrar Sesión</a>
                 </div>
 
                 <div class="navbar-text" id="user-info">
@@ -147,7 +175,6 @@
                         <img src="Principal/carrito.png" alt="Carrito de Compras" id="cart-icon" height="30"> (<span id="cart-count">0</span>)
                     </a>
                 </div>
-
             </div>
         </nav>
     </header>
@@ -159,7 +186,7 @@
                     <div class="col-md-6 text-left">
                         <h3 class="titulo-principal">Sobre nosotros:</h3>
                         <p class="about-text">
-                            La Sexta Sports es una tienda dedicada al rubro de ropa deportiva, una empresa que ofrece a sus clientes la mejor calidad de ropa deportiva de las mejores marcas y los mejores precios.
+                            La Sexta Sports es una tienda dedicada al rubro de ropa deportiva, ofreciendo a nuestros clientes la mejor calidad de ropa deportiva de las mejores marcas a los precios más competitivos.
                         </p>
                     </div>
                     <div class="col-md-6 text-center image-container">
@@ -171,9 +198,18 @@
                     <div class="col-md-4 text-left">
                         <h3 class="titulo-principal">CONTACTO:</h3>
                         <div class="contact-info">
-                            <p><a href="mailto:cesar.meza.nomberto@gmail.com" style="color: #fff;"><img src="Principal/gmail.png" class="contact-icon" alt="Email"> LaSextDeport@gmail.com</a></p>
-                            <p><a href="https://instagram.com/cesarjhon01" style="color: #fff;"><img src="Principal/insta.png" class="contact-icon" alt="Instagram"> @LaSextDeport</a></p>
-                            <p><a href="https://wa.me/51917859378" style="color: #fff;"><img src="Principal/waht.png" class="contact-icon" alt="WhatsApp"> +51 917859378</a></p>
+                            <p><a href="mailto:cesar.meza.nomberto@gmail.com" style="color: #fff;">
+                                   <img src="Principal/gmail.png" class="contact-icon" alt="Email"> 
+                                   LaSextDeport@gmail.com</a>
+                            </p>
+                            <p><a href="https://instagram.com/cesarjhon01" style="color: #fff;">
+                                   <img src="Principal/insta.png" class="contact-icon" alt="Instagram"> 
+                                   @LaSextDeport</a>
+                            </p>
+                            <p><a href="https://wa.me/51917859378" style="color: #fff;">
+                                   <img src="Principal/waht.png" class="contact-icon" alt="WhatsApp"> 
+                                   +51 917859378</a>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -213,7 +249,7 @@
                 event.preventDefault();
                 localStorage.removeItem('loggedInUser');
                 localStorage.removeItem('cart');
-                window.location.href = 'iniciar sesion.html';
+                window.location.href = 'iniciar_sesion.html';
             });
         });
     </script>

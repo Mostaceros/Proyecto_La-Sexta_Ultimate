@@ -43,8 +43,8 @@
             color: #ff0; /* Texto amarillo para mayor visibilidad */
             border: 2px solid #ff0; /* Borde amarillo */
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombra para un efecto de profundidad */
-            height: 400px; /* Altura fija del contenedor */
-            overflow-y: auto; /* Scroll si se excede la altura */
+            max-height: 400px; /* Altura máxima */
+            overflow-y: auto; /* Habilitar scroll */
         }
 
         .print-button {
@@ -116,8 +116,13 @@
 
 <main>
     <section>
-        <h2 class="titulo-principal">voucher DE COMPRA</h2>
+        <h2 class="titulo-principal">Voucher de Compra</h2>
         <div class="voucher-container" id="voucher-container">
+            <h3>Factura Electrónica</h3>
+            <p>RUC: <strong>00072695991</strong></p>
+            <p>Fecha: <strong id="purchase-date"></strong></p>
+            <p>Hora: <strong id="purchase-time"></strong></p>
+            <hr>
             <!-- Detalles de la compra se insertarán aquí -->
         </div>
         <button class="print-button" onclick="downloadvoucher()">Imprimir voucher</button>
