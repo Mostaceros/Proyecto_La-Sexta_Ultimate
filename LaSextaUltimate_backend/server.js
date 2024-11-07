@@ -33,8 +33,8 @@ app.get('/registro', (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'registro.html'));
 });
 
-app.get('/boucher', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'boucher.html'));
+app.get('/voucher', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'voucher.html'));
 });
 
 app.get('/cargando', (req, res) => {

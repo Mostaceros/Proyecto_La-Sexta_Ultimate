@@ -38,32 +38,23 @@
             margin-bottom: 10px;
         }
 
-        .cart-item button {
-            margin-left: 10px;
-        }
-
         #carrito-vacio {
             text-align: center;
         }
 
-        /* Estilo para el botón de Cerrar Sesión */
         .logout-btn {
-            color: #ff0; /* Texto amarillo */
-            background-color: #000; /* Fondo negro */
-            border: 2px solid #ff0; /* Borde amarillo */
+            color: #ff0;
+            background-color: #000;
+            border: 2px solid #ff0;
             padding: 10px 20px;
             border-radius: 5px;
             text-decoration: none;
-            transition: background-color 0.3s, color 0.3s; /* Transición para efectos */
+            transition: background-color 0.3s, color 0.3s;
         }
 
         .logout-btn:hover {
-            background-color: #ff0; /* Fondo amarillo al pasar el mouse */
-            color: #000; /* Texto negro al pasar el mouse */
-        }
-
-        .hidden {
-            display: none;
+            background-color: #ff0;
+            color: #000;
         }
 
         .contenedor-carrito {
@@ -103,12 +94,12 @@
                     <li class="nav-item"><a class="nav-link" href="inicio.html">INICIO</a></li>
                     <li class="nav-item"><a class="nav-link" href="producto.html">PRODUCTOS</a></li>
                     <li class="nav-item"><a class="nav-link" href="contacto.html">CONTACTO</a></li>
-                    <li class="nav-item"><a class="nav-link" href="iniciar_sesion.html">INICIAR SESIÓN</a></li>
+                    <li class="nav-item"><a class="nav-link" href="iniciar sesion.html">INICIAR SESIÓN</a></li>
                     <li class="nav-item"><a class="nav-link" href="registro.html">REGISTRO</a></li>
                 </ul>
 
                 <div class="navbar-text ml-3 hidden" id="logout-container">
-                    <a href="#" id="logout-link" class="btn logout-btn" style="color: #ff0;">Cerrar Sesión</a>
+                    <a href="#" id="logout-link" class="btn logout-btn">Cerrar Sesión</a>
                 </div>
 
                 <div class="navbar-text" id="user-info">
@@ -128,7 +119,7 @@
     <main class="container mt-5">
         <h2 class="titulo-principal">Carrito</h2>
         <div class="contenedor-carrito">
-            <p id="carrito-vacio" class="carrito-vacio">Tu carrito está vacío. <i class="bi bi-emoji-frown"></i></p>
+            <p id="carrito-vacio" class="carrito-vacio">Tu carrito está vacío.</p>
 
             <div id="carrito-productos" class="carrito-productos">
                 <!-- Esto se completará con JavaScript -->
@@ -142,12 +133,12 @@
                 <div class="carrito-acciones-derecha">
                     <div class="carrito-acciones-total">
                         <p>Total:</p>
-                        <p id="total">S/0</p>
+                        <p id="total">S/0.00</p>
                     </div>
                     <button id="carrito-acciones-comprar" class="carrito-acciones-comprar btn btn-success">Comprar ahora</button>
                 </div>
             </div>
-            <p id="carrito-comprado" class="carrito-comprado disabled">Muchas gracias por tu compra. <i class="bi bi-emoji-laughing"></i></p>
+            <p id="carrito-comprado" class="carrito-comprado disabled">Muchas gracias por tu compra.</p>
         </div>
     </main>
 
@@ -235,18 +226,18 @@
 
                         localStorage.setItem('lastPurchase', JSON.stringify(purchaseDetails));
 
-                        // Procesar la compra y redirigir al boucher
+                        // Procesar la compra y redirigir al voucher
                         Swal.fire({
                             title: '¡Gracias por tu compra!',
                             text: 'Tu pedido ha sido realizado con éxito.',
                             icon: 'success',
                             confirmButtonText: 'Aceptar'
                         }).then(() => {
-                            // Limpiar el carrito y redirigir al boucher
+                            // Limpiar el carrito y redirigir al voucher
                             cart = [];
                             updateCart();
                             saveCart();
-                            window.location.href = 'boucher.html'; // Redirige al boucher
+                            window.location.href = 'voucher.html'; // Redirige al voucher
                         });
                     } else {
                         Swal.fire({
@@ -269,9 +260,7 @@
             }
 
             updateCart();
-        
         });
     </script>
 </body>
-
 </html>
