@@ -10,72 +10,53 @@
 
     <style>
         body {
-            background-color: #000;
-            /* Fondo negro para toda la página */
-            color: #ff0;
-            /* Texto amarillo por defecto */
+            background-color: #000; /* Fondo negro para toda la página */
+            color: #ff0; /* Texto amarillo por defecto */
         }
 
         .navbar,
         .footer {
-            background-color: rgba(0, 0, 0, 0.8);
-            /* Fondo negro transparente para la navbar y footer */
-            color: #ff0;
-            /* Texto amarillo */
+            background-color: rgba(0, 0, 0, 0.8); /* Fondo negro transparente para la navbar y footer */
+            color: #ff0; /* Texto amarillo */
         }
 
         .nav-link,
         .navbar-brand,
         .navbar-text {
-            color: #ff0 !important;
-            /* Texto amarillo en la navbar */
-            font-weight: bold;
-            /* Texto en negrita */
+            color: #ff0 !important; /* Texto amarillo en la navbar */
+            font-weight: bold; /* Texto en negrita */
         }
 
         .nav-link:hover,
         .navbar-brand:hover,
         .navbar-text:hover {
-            color: #fff !important;
-            /* Texto blanco al pasar el mouse */
+            color: #fff !important; /* Texto blanco al pasar el mouse */
         }
 
         .filter-btn,
         .add-to-cart,
         .btn-primary {
-            background-color: #000;
-            /* Fondo negro para los botones */
-            color: #ff0;
-            /* Texto amarillo */
-            border: 1px solid #ff0;
-            /* Borde amarillo */
-            font-size: 0.9rem;
-            /* Ajustar el tamaño del texto de los botones */
-            padding: 0.375rem 0.75rem;
-            /* Ajustar el relleno de los botones */
-            width: 100%;
-            /* Asegurar que los botones ocupen todo el ancho porseaca */
-            font-weight: bold;
-            /* Texto en negrita */
+            background-color: #000; /* Fondo negro para los botones */
+            color: #ff0; /* Texto amarillo */
+            border: 1px solid #ff0; /* Borde amarillo */
+            font-size: 0.9rem; /* Ajustar el tamaño del texto de los botones */
+            padding: 0.375rem 0.75rem; /* Ajustar el relleno de los botones */
+            width: 100%; /* Asegurar que los botones ocupen todo el ancho por defecto */
+            font-weight: bold; /* Texto en negrita */
         }
 
         .filter-btn:hover,
         .add-to-cart:hover,
         .btn-primary:hover {
-            background-color: #ff0;
-            /* Fondo amarillo al pasar el mouse */
-            color: #000;
-            /* Texto negro */
+            background-color: #ff0; /* Fondo amarillo al pasar el mouse */
+            color: #000; /* Texto negro */
         }
 
         .card {
-            background-color: rgba(0, 0, 0, 0.8);
-            /* Fondo negro transparente para las tarjetas de producto */
+            background-color: rgba(0, 0, 0, 0.8); /* Fondo negro transparente para las tarjetas de producto */
             border: none;
-            color: #ff0;
-            /* Texto amarillo */
-            margin-bottom: 30px;
-            /* Espaciado inferior entre tarjetas */
+            color: #ff0; /* Texto amarillo */
+            margin-bottom: 30px; /* Espaciado inferior entre tarjetas */
         }
 
         .card-body {
@@ -91,12 +72,10 @@
         }
 
         .titulo-principal {
-            color: #ff0;
-            /* Texto amarillo */
+            color: #ff0; /* Texto amarillo */
             text-align: center;
             margin-bottom: 30px;
-            font-weight: bold;
-            /* Texto en negrita */
+            font-weight: bold; /* Texto en negrita */
         }
 
         .product {
@@ -107,25 +86,20 @@
             background-color: transparent;
             border: none;
             padding: 0;
-            margin-bottom: 10px;
-            /* Espaciado entre los botones de filtro */
+            margin-bottom: 10px; /* Espaciado entre los botones de filtro */
         }
 
-        /* Ajustar espaciado entre contenedores */
         .container>.row {
             display: flex;
             justify-content: space-between;
-            gap: 20px;
-            /* Ajustar el espaciado entre los contenedores de filtros y productos */
+            gap: 20px; /* Ajustar el espaciado entre los contenedores de filtros y productos */
         }
 
-        /* Espaciado entre los productos */
         #lista-productos .col-md-4 {
             padding-left: 15px;
             padding-right: 15px;
         }
 
-        /* Clase para animación de clic */
         @keyframes clickAnimation {
             0% {
                 transform: scale(1);
@@ -150,38 +124,40 @@
             animation: clickAnimation 0.3s ease-out;
         }
 
-        /* Nueva clase para el nombre del usuario sin grosor de fuente */
         .user-name {
-            font-weight: normal;
-            /* Asegura que la fuente no tenga grosor */
-            color: #fff;
-            /* Asegura que el texto sea blanco */
+            font-weight: normal; /* Asegura que la fuente no tenga grosor */
+            color: #fff; /* Asegura que el texto sea blanco */
         }
 
-        /* Estilo para el botón de Cerrar Sesión */
         .logout-btn {
-            color: #ff0;
-            /* Texto amarillo */
-            background-color: #000;
-            /* Fondo negro */
-            border: 2px solid #ff0;
-            /* Borde amarillo */
+            color: #ff0; /* Texto amarillo */
+            background-color: #000; /* Fondo negro */
+            border: 2px solid #ff0; /* Borde amarillo */
             padding: 10px 20px;
             border-radius: 5px;
             text-decoration: none;
-            transition: background-color 0.3s, color 0.3s;
-            /* Transición para efectos */
+            transition: background-color 0.3s, color 0.3s; /* Transición para efectos */
         }
 
         .logout-btn:hover {
-            background-color: #ff0;
-            /* Fondo amarillo al pasar el mouse */
-            color: #000;
-            /* Texto negro al pasar el mouse */
+            background-color: #ff0; /* Fondo amarillo al pasar el mouse */
+            color: #000; /* Texto negro al pasar el mouse */
         }
 
         .hidden {
             display: none;
+        }
+
+        #success-message {
+            position: fixed;
+            top: 80px; /* Cambiado a 80px para mover hacia abajo */
+            right: 20px;
+            background-color: rgba(255, 255, 0, 0.9); /* Amarillo fosforescente */
+            color: #000; /* Texto oscuro */
+            padding: 10px;
+            border-radius: 5px;
+            z-index: 1000;
+            display: none; /* Por defecto está oculto */
         }
     </style>
 
@@ -936,10 +912,15 @@
 
         </section>
 
+        <!-- Mensaje de éxito -->
+        <div id="success-message">
+            Producto agregado con éxito
+        </div>
+
     </main>
 
     <footer class="mt-5 py-3 text-center">
-        <b> <p>&copy; 2024 La Sexta - Todos los derechos reservados</p></b>
+        <b><p>&copy; 2024 La Sexta - Todos los derechos reservados</p></b>
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -947,7 +928,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
         
-         document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function () {
             const user = JSON.parse(localStorage.getItem('loggedInUser'));
             if (user) {
                 document.getElementById('user-name').innerText = user.name;
@@ -996,7 +977,6 @@
                 });
             });
 
-
             document.querySelectorAll('.add-to-cart').forEach(button => {
                 button.addEventListener('click', (e) => {
                     const id = parseInt(e.target.getAttribute('data-id'));
@@ -1015,6 +995,13 @@
 
                     localStorage.setItem('cart', JSON.stringify(cart));
                     updateCartCount();
+
+                    // Mostrar el mensaje de éxito
+                    const successMessage = document.getElementById('success-message');
+                    successMessage.style.display = 'block'; // Muestra el mensaje
+                    setTimeout(() => {
+                        successMessage.style.display = 'none'; // Oculta el mensaje después de 2 segundos
+                    }, 2000); // 2000 ms = 2 segundos
 
                     // Remover la clase de animación después de 0.3s
                     setTimeout(() => {

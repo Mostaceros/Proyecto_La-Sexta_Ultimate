@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boucher - La Sexta</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-color: #000; /* Fondo negro */
+            color: #ff0; /* Texto amarillo */
+            font-family: 'Arial', sans-serif;
+        }
+
+        .navbar, .footer {
+            background-color: rgba(0, 0, 0, 0.8); /* Fondo negro transparente para la navbar y footer */
+            color: #ff0; /* Texto amarillo */
+        }
+
+        .nav-link, .navbar-brand, .navbar-text {
+            color: #ff0 !important; /* Texto amarillo en la navbar */
+        }
+
+        .nav-link:hover, .navbar-brand:hover, .navbar-text:hover {
+            color: #fff !important; /* Texto blanco al pasar el mouse */
+        }
+
+        .titulo-principal {
+            color: #ff0; /* Título en amarillo */
+            text-align: center;
+            margin-bottom: 30px;
+            margin-top: 20px;
+        }
+
+        .boucher-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #9a9a9a; /* Fondo blanco */
+            border-radius: 10px;
+            color: #000; /* Texto negro para mayor visibilidad */
+        }   
+
+        .boucher-item {
+            margin-bottom: 10px;
+            color: #000; /* Asegurar que el texto de los productos sea negro */
+        }
+
+        .print-button {
+            display: block;
+            margin: 20px auto;
+            background-color: #ff0; /* Fondo amarillo */
+            border: none;
+            color: #000; /* Texto negro */
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="#">
+            <img src="Principal/icono.png" alt="Logo de la Tienda" id="logo-img" height="50">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item"><a class="nav-link" href="inicio.html">INICIO</a></li>
+                <li class="nav-item"><a class="nav-link" href="producto.html">PRODUCTOS</a></li>
+                <li class="nav-item"><a class="nav-link" href="contacto.html">CONTACTO</a></li>
+                <li class="nav-item"><a class="nav-link" href="iniciar_sesion.html">INICIAR SESIÓN</a></li>
+                <li class="nav-item"><a class="nav-link" href="registro.html">REGISTRO</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<main>
+    <section>
+        <h2 class="titulo-principal">Boucher de Compra</h2>
+        <div class="boucher-container" id="boucher-container">
+            <!-- Aquí se generará el contenido del boucher -->
+        </div>
+        <button class="print-button" onclick="downloadBoucher()">Imprimir Boucher</button>
+    </section>
+</main>
+
+<footer class="footer text-center">
+    <b><p>&copy; 2024 La Sexta - Todos los derechos reservados</p></b>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const purchaseDetails = JSON.parse(localStorage.getItem('lastPurchase')); // Obtener los detalles de la compra
+        const boucherContainer = document.getElementById('boucher-container');
+
+        if (!purchaseDetails) {
+            boucherContainer.innerHTML = '<p>No hay datos de la compra.</p>';
+            return;
+        }
+
+        // Mostrar datos del cliente
+        boucherContainer.innerHTML += `<p style="color: #000;"><strong>CLIENTE:</strong> ${purchaseDetails.clientName}</p>`;
+        boucherContainer.innerHTML += `<p style="color: #000;"><strong>CORREO:</strong> ${purchaseDetails.clientEmail}</p>`;
+
+        // Mostrar productos
+        purchaseDetails.items.forEach(item => {
+            const boucherItem = document.createElement('div');
+            boucherItem.classList.add('boucher-item');
+            boucherItem.innerHTML = `<strong style="color: #000;">${item.name}</strong>: S/${item.price} x ${item.quantity} = S/${item.total}`;
+            boucherContainer.appendChild(boucherItem);
+        });
+
+        // Mostrar subtotal, IGV y total
+        boucherContainer.innerHTML += `<hr><p style="color: #000;"><strong>Subtotal:</strong> S/${purchaseDetails.subtotal.toFixed(2)}</p>`;
+        boucherContainer.innerHTML += `<p style="color: #000;"><strong>IGV (18%):</strong> S/${purchaseDetails.igv.toFixed(2)}</p>`;
+        boucherContainer.innerHTML += `<p style="color: #000;"><strong>Total:</strong> S/${purchaseDetails.total.toFixed(2)}</p>`;
+    });
+
+    function downloadBoucher() {
+        const boucherContent = document.getElementById('boucher-container').innerText; // Obtener el texto del boucher
+        const blob = new Blob([boucherContent], { type: 'text/plain' }); // Crear un blob de texto
+        const link = document.createElement('a');
+        link.href = window.URL.createObjectURL(blob); // Crear un enlace para descargar
+        link.download = 'boucher.txt'; // Nombre del archivo
+        link.click(); // Simular clic para descargar
+    }
+</script>
+</body>
+</html>

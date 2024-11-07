@@ -68,7 +68,6 @@
             padding: 15px;
         }
 
-        /* Estilo para el botón de Cerrar Sesión */
         .logout-btn {
             color: #ff0; /* Texto amarillo */
             background-color: #000; /* Fondo negro */
@@ -104,8 +103,10 @@
                     <li class="nav-item"><a class="nav-link" href="inicio.html">INICIO</a></li>
                     <li class="nav-item"><a class="nav-link" href="producto.html">PRODUCTOS</a></li>
                     <li class="nav-item"><a class="nav-link" href="contacto.html">CONTACTO</a></li>
-                    <li class="nav-item"><a class="nav-link" href="iniciar sesion.html">INICIAR SESIÓN</a></li>
-                    <li class="nav-item"><a class="nav-link" href="registro.html">REGISTRO</a></li>
+                    <li class="nav-item" id="login-register-container"> <!-- Contenedor para ocultar -->
+                        <a class="nav-link" href="iniciar sesion.html">INICIAR SESIÓN</a>
+                        <a class="nav-link" href="registro.html">REGISTRO</a>
+                    </li>
                 </ul>
 
                 <div class="navbar-text ml-3 hidden" id="logout-container">
@@ -162,8 +163,9 @@
 
             if (user) {
                 localStorage.setItem('loggedInUser', JSON.stringify(user));
-                alert('Usted ha iniciado sesión correctamente');
-                window.location.href = 'inicio.html';
+
+                // Redirigir a la pantalla de carga
+                window.location.href = 'cargando.html'; 
             } else {
                 alert('Correo electrónico o contraseña incorrectos');
             }
@@ -174,6 +176,7 @@
             if (user) {
                 document.getElementById('user-name').innerText = user.name;
                 document.getElementById('logout-container').classList.remove('hidden');
+                document.getElementById('login-register-container').style.display = 'none'; // Oculta el contenedor de inicio de sesión y registro
             } else {
                 document.getElementById('logout-container').classList.add('hidden');
             }
