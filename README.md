@@ -1,5 +1,5 @@
 # Proyecto_La-Sexta_Ultimate
-
+Escuchame algo ,haz estos pasos porfa:
 # Manual de Uso para la Aplicación
 
 Este documento te guiará a través del proceso de descarga y configuración de la aplicación.
